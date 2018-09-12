@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">YOU</h1>
+            <div class="healthbar">
+                <div class="healthbar text-center" 
+                style="background-color: green; margin: 0; color:white;"
+                :style="{width:playerhealth + '%'}">
+                    {{playerhealth}}
+
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">MONSTER</h1>
+            <div class="healthbar">
+                <div class="healthbar text-center" 
+                style="background-color: green; margin: 0; color: white;"
+                :style="{width:monsterhealth +'%'}">
+                    {{monsterhealth}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="row controls" v-if="!gameisrunning">
+        <div class="small-12 columns">
+            <button id="start-game" @click="startGame">START NEW GAME</button>
+        </div>
+    </section>
+    <section class="row controls" v-else>
+        <div class="small-12 columns">
+            <button id="attack" @click="attack">ATTACK</button>
+            <button id="special-attack" @click="specialAttack">SPECIAL ATTACK</button>
+            <button id="heal" @click="heal">HEAL</button>
+            <button id="give-up" @click=giveup>GIVE UP</button>
+        </div>
+    </section>
+    
+    <section class="row log">
+        <div class="small-12 columns">
+            <ul>
+                <li v-for="turn in turns"
+                    :class="{'player-turn':turn.isplayer,'monster-turn':!turn.isplayer }">
+                    {{turn.text}}
+
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="row controls">
+            <p style="color:blue;font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-style:initial">This is samll game which is intresting</p>
+         
+ 
+     </section>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
